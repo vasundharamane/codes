@@ -1,21 +1,23 @@
 package org.TwoPointerTechnique;
 
+import java.util.Arrays;
 import java.util.HashSet;
 
 public class FindAPairWithTargetSumUnSortedArr {
     public static void main(String[] args) {
-        int[] arr = {5,10, 15, 3, 7};
-        int target = 17;
+        int[] testArray = {1, 3, 5, 7, 9, 2, 4, 2, 3, 4};
+        int target = 6;
+        System.out.println("Two pairs resulting in target " + target + " " + Arrays.toString(findNumbers(testArray, target)));
+    }
 
-        HashSet<Integer> seenNumbers = new HashSet<>();
-
-        for (int n : arr) {
-            int complement = target - n;
-            if (seenNumbers.contains(complement)) {
-                System.out.println("pair found " + complement + " and " + n);
-                break;
-            }
-            seenNumbers.add(n);
+    static int[] findNumbers(int[] testArr, int target) {
+        HashSet<Integer> numbers = new HashSet<>();
+        for (int i = 0; i < testArr.length; i++) {
+            int complement = target - testArr[i];
+            if (numbers.contains(complement)) {
+                return new int[]{testArr[i], complement};
+            } else numbers.add(testArr[i]);
         }
+        return null;
     }
 }
